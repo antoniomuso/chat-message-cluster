@@ -1,4 +1,4 @@
-var app = require('./app.js');
+var app = require('./lib/app.js');
 var http = require("http").Server(app);
 //var https = require("https").Server(app);
 var io = require("socket.io")(http);

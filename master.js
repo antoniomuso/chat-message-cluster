@@ -5,7 +5,7 @@ var socketToWorker = {};
 
 module.exports = function (workers, cluster) {
 
-    require("./proxy_server.js")(workers);
+    require("./lib/proxy_server.js")(workers);
     
     cluster.on("message", function (worker, mess) {
         if (mess.cmd === "chat message") {
