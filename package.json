@@ -1,0 +1,16 @@
+{
+  "name": "socketio",
+  "version": "1.0.0",
+  "description": "test della libreria socket io",
+  "main": "boot.js",
+  "scripts": {
+    "start": "node boot.js"
+  },
+  "author": "Antonio Musolino",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "http-proxy": "^1.16.2",
+    "socket.io": "^1.7.2"
+  }
+}
