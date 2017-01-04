@@ -46,7 +46,7 @@ process.on("message", function (message){
         }
         else if (message.cmd === "new user connected")
         {
-            io.sockets.emit("new users connected", message.username, message.id);
+            io.sockets.emit("new user connected", message.username, message.id);
 
         }
         else if (message.cmd ==="get users connected")
