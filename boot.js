@@ -9,7 +9,7 @@ if (cluster.isMaster) { // Master process
     debug('Running in %s environment', environment);
 
     var numCPUs = require("os").cpus().length;
-    port = 2000;
+    port = require("./config.json").workers_start_port;
     var workers = {};
     for (var i = 0; i < numCPUs; i++) {
         

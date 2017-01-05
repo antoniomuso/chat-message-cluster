@@ -18,7 +18,6 @@ module.exports = function (workers, cluster) {
                 // invio il messaggio a tutti tranne il processo che ha inviato il messaggio.
                 if (pid != mess.pid)
                 {
-                    console.log(pid + " " + mess.pid);
                     workers[pid].send(mess);
                 }
             }
