@@ -18,12 +18,21 @@ io.on("connection", function(socket){
 
     process.send({cmd: 'get users connected', pid: process.pid, id: socket.id });
     
-
+    var spam = false; // evita lo spam
     socket.on("chat message" ,function(message, username)    {
-        socket.emit('log', 'Process serving the request: ' + process.pid);
-        socket.broadcast.emit("chat message", message, username, socket.id);
-        // send a mex to the master
-        process.send({cmd: 'chat message', payload: message, username: username, pid: process.pid, id: socket.id });
+        if (!spam)
+        {
+            spam = true;
+            setTimeout(function(){ spam = false }, 500);
+            socket.emit('log', 'Process serving the request: ' + process.pid);
+            socket.broadcast.emit("chat message", message, username, socket.id);
+            // send a mex to the master
+            process.send({cmd: 'chat message', payload: message, username: username, pid: process.pid, id: socket.id });
+        }
+        else
+        {
+            socket.emit( "error message" ,{type: "spam", message: "You are spamming, your message wasn't sent "});
+        }
     });
 
     socket.on("disconnect", function(){
