@@ -34,30 +34,26 @@
         return $("#username").val();
     }
     function addUser(username, socketID) {
-        $("#Users").append('<li id="' + socketID + '">'+username+'</li>');
+        $("#Users").append('<li id="' + socketID + '">' + username + '</li>');
     }
     function removeUser(socketID) {
         $('#' + socketID).remove();
     }
-    function getNameOfID(id)
-    {
+    function getNameOfID(id) {
         return $('#' + id).text();
     }
-    function update(socketID,username)
-    {
-        if (getNameOfID(socketID) !== username)
-        {
+    function update(socketID, username) {
+        if (getNameOfID(socketID) !== username) {
             removeUser(socketID);
-            addUser(username,socketID);
+            addUser(username, socketID);
         }
     }
 </script>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
 <script>
-    var socket = io({transports: ["websocket"]});
-    
+    var socket = io({ transports: ["websocket"] });
+
 
 
     $('#formTo').submit(function () {
@@ -68,14 +64,12 @@
         return false;
     });
 
-    socket.on('log', function(mex){
+    socket.on('log', function (mex) {
         console.log(mex);
     });
 
-    socket.on("get users connected", function(userID)
-    {
-        for (id in userID)
-        {
+    socket.on("get users connected", function (userID) {
+        for (id in userID) {
             addUser(userID[id], id);
         }
     });
@@ -86,7 +80,7 @@
     });
     socket.on("chat message", function (mes, username, socketID) {
         appendMessage(username + ": " + mes);
-        update(socketID,username);
+        update(socketID, username);
     });
     socket.on("user disconnected", function (id) {
         appendLog(getNameOfID(id) + " has disconnected");
