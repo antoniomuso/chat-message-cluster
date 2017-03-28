@@ -1,4 +1,4 @@
 {
-    "server_port" : 433,
-    "workers_start_port" : 2000 
+    "server_port" : 80,
+    "server_port_https" : 8000
 }

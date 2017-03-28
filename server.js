@@ -1,5 +1,6 @@
 var path = require("path")
 var app = require('./lib/app.js');
+var conf = require("./config.json")
 var http = require("http").Server(app);
 var https = require("https").createServer({
     key: require("fs").readFileSync(path.join(__dirname, "/ssl/private-key.pem")),
@@ -71,15 +72,15 @@ process.on("message", function (message) {
 
 });
 // HTTP
-http.listen(parseInt(80), function () {
+/*http.listen(parseInt(conf.server_port), function () {
     console.log("listening on " + 80 + " Worker");
-});
+});*/
 
 // HTTPS
 
 
-https.listen(433, function () {
-    console.log("listening on 433 Master");
+https.listen(conf.server_port_https, function () {
+    console.log("listening on "+ conf.server_port_https + " Master");
 });
 
 

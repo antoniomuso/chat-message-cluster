@@ -4,7 +4,7 @@
   "description": "test della libreria socket io",
   "main": "boot.js",
   "scripts": {
-    "start": "node boot.js"
+    "start": "node boot.js >> logs.log"
   },
   "author": "Antonio Musolino",
   "license": "ISC",
